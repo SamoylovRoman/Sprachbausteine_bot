@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.fsm.state import State, StatesGroup
@@ -415,3 +415,13 @@ async def set_user_answer_option(callback: CallbackQuery):
 @router.callback_query(lambda c: c.data.startswith("setting_") and c.data != "setting_num_choices")
 async def handle_settings_stub(callback: CallbackQuery):
     await callback.answer("⚙️ Diese Einstellung ist noch nicht verfügbar.", show_alert=True)
+
+
+# # Delete any non-text messages silently
+# @router.message(F.photo | F.video | F.document | F.sticker | F.voice | F.audio | F.video_note | F.animation)
+# async def delete_media(message: Message):
+#     try:
+#         await message.delete()
+#     except Exception as e:
+#         # Optional: log error in console if bot lacks rights
+#         print(f"Failed to delete media message: {e}")

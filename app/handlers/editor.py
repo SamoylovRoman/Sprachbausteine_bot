@@ -423,15 +423,33 @@ async def handle_add_codes(message: Message, state: FSMContext):
 @router.message(F.text, ~F.text.startswith("/"))
 async def handle_unexpected_message(message: Message, state: FSMContext):
     current_state = await state.get_state()
-    all_commands = {f"/{cmd.command}" for cmd in (editor_commands + user_commands)}
-    print(f"FSM: {current_state}\n Command: {all_commands}")
 
-    # Если сообщение — не команда из списка и нет активного состояния
-    if (current_state is None and message.text not in all_commands) or (
-            current_state is not None and message.text not in all_commands):
-        try:
-            print(f"Don't do anything")
-            await message.delete()
-        except:
-            pass  # если вдруг нельзя удалить (например, нет прав)
+    if current_state is None:
+        await  message.delete()
+
+
+@router.message(~F.text)
+async def delete_non_text_message(message: Message):
+    """
+    Deletes any non-text content (photos, videos, documents, stickers, voice, etc.)
+    sent by the user. Silent and safe for private chats.
+    """
+    try:
+        await message.delete()
+        print(f"[CLEANUP] Deleted non-text message from user {message.from_user.id}")
+    except Exception as e:
+        print(f"[CLEANUP] Failed to delete non-text message: {e}")
+
+
+# @router.message(F.text.startswith("/"))
+# async def handle_unexpected_command(message: Message, state: FSMContext):
+#     current_state = await state.get_state()
+#     all_commands = {f"/{cmd.command}" for cmd in (editor_commands + user_commands)}
+#     print(f"FSM: {current_state}\n Command: {all_commands}")
+#     print(all_commands)
+#     print(message.text)
+#
+#     if current_state is None and message.text in all_commands:
+#         return
+#     await message.delete()
 
