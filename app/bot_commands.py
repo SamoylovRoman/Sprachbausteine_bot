@@ -9,7 +9,7 @@ editor_commands = [
 
 user_commands = [
     BotCommand(command="start", description="Bot starten"),
-    BotCommand(command="start_training", description="Sprachbaustein-Training starten"),
+    BotCommand(command="start_training", description="Training starten"),
     BotCommand(command="my_statistics", description="Meine Statistik anzeigen"),
     BotCommand(command="bot_settings", description="Bot-Einstellungen"),
     BotCommand(command="feedback", description="Feedback an Entwickler")
