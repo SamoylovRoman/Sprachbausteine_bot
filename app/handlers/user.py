@@ -416,6 +416,23 @@ async def set_user_answer_option(callback: CallbackQuery):
 async def handle_settings_stub(callback: CallbackQuery):
     await callback.answer("⚙️ Diese Einstellung ist noch nicht verfügbar.", show_alert=True)
 
+@router.message(Command("feedback"))
+async def cmd_feedback(message: Message):
+    """
+    Sends info message with developer contact for feedback, suggestions, or bug reports.
+    """
+    developer_link = "https://t.me/romavesna"
+    text = (
+        "💬 <b>Feedback und Vorschläge</b>\n\n"
+        "Wenn du Vorschläge, Fragen oder einen Fehler melden möchtest, "
+        f"kannst du mir direkt schreiben:\n\n"
+        f"👉 <a href=\"{developer_link}\">@romavesna</a>\n\n"
+        "Du kannst dabei auch <b>Screenshots</b> oder <b>Dokumente</b> anhängen, "
+        "wenn sie beim Beschreiben des Problems helfen.\n\n"
+        "Ich freue mich über dein Feedback! 😊"
+    )
+    await message.answer(text, parse_mode="HTML")
+
 
 # # Delete any non-text messages silently
 # @router.message(F.photo | F.video | F.document | F.sticker | F.voice | F.audio | F.video_note | F.animation)

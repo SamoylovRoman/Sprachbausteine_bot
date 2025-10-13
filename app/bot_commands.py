@@ -11,5 +11,6 @@ user_commands = [
     BotCommand(command="start", description="Bot starten"),
     BotCommand(command="start_training", description="Sprachbaustein-Training starten"),
     BotCommand(command="my_statistics", description="Meine Statistik anzeigen"),
-    BotCommand(command="bot_settings", description="Bot-Einstellungen")
+    BotCommand(command="bot_settings", description="Bot-Einstellungen"),
+    BotCommand(command="feedback", description="Feedback an Entwickler")
 ]
