@@ -1,6 +1,6 @@
 from aiogram.exceptions import TelegramAPIError
 
-from app.bot import dp, bot
+from app.bot import dp, bot, on_startup
 import asyncio
 # from app.middlewares.auth import RegisterUserMiddleware
 from app.db.models import Base
@@ -15,6 +15,7 @@ async def main():
     # dp.update.middleware(RegisterUserMiddleware())
     dp.include_router(editor.router)
     dp.include_router(user.router)
+    await on_startup(bot)
     print("✅ Bot is up and running!")
     await dp.start_polling(bot)
 
