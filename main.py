@@ -15,7 +15,6 @@ async def main():
     # dp.update.middleware(RegisterUserMiddleware())
     dp.include_router(editor.router)
     dp.include_router(user.router)
-    await on_startup(bot)
     print("✅ Bot is up and running!")
     await dp.start_polling(bot)
 

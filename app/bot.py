@@ -6,7 +6,4 @@ from app.config import BOT_TOKEN
 
 bot = Bot(token=BOT_TOKEN)
 
-async def on_startup(bot: Bot):
-    await bot.set_my_commands(user_commands, scope=BotCommandScopeDefault())
-
 dp = Dispatcher()
