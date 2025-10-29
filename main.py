@@ -1,6 +1,6 @@
 from aiogram.exceptions import TelegramAPIError
 
-from app.bot import dp, bot, on_startup
+from app.bot import dp, bot
 import asyncio
 # from app.middlewares.auth import RegisterUserMiddleware
 from app.db.models import Base
